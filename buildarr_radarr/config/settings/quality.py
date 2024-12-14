@@ -35,9 +35,9 @@ from ...api import radarr_api_client
 from ...secrets import RadarrSecrets
 from ..types import RadarrConfigBase
 
-QUALITYDEFINITION_MIN_MAX = 398
-QUALITYDEFINITION_PREFERRED_MAX = 399
-QUALITYDEFINITION_MAX = 400
+QUALITYDEFINITION_MIN_MAX = 1998
+QUALITYDEFINITION_PREFERRED_MAX = 1999
+QUALITYDEFINITION_MAX = 2000
 
 
 class QualityDefinition(RadarrConfigBase):
@@ -81,7 +81,7 @@ class QualityDefinition(RadarrConfigBase):
     The minimum allowed bitrate for a quality level, in megabytes per minute (MB/min).
 
     Must be set at least 1MB/min lower than `preferred`.
-    The minimum value is `0`, and the maximum value is `398`.
+    The minimum value is `0`, and the maximum value is `1998`.
     """
 
     preferred: Optional[float] = Field(..., ge=0, le=QUALITYDEFINITION_PREFERRED_MAX)
@@ -89,7 +89,7 @@ class QualityDefinition(RadarrConfigBase):
     The maximum allowed bitrate for a quality level, in megabytes per minute (MB/min).
 
     Must be set at least 1MB/min higher than `min`, and 1MB/min lower than `max`.
-    If set to `null` or `399`, prefer the highest possible bitrate.
+    If set to `null` or `1999`, prefer the highest possible bitrate.
     """
 
     max: Optional[float] = Field(..., ge=1, le=QUALITYDEFINITION_MAX)
@@ -97,7 +97,7 @@ class QualityDefinition(RadarrConfigBase):
     The maximum allowed bitrate for a quality level, in megabytes per minute (MB/min).
 
     Must be set at least 1MB/min higher than `preferred`.
-    If set to `null` or `400`, the maximum bit rate will be unlimited.
+    If set to `null` or `2000`, the maximum bit rate will be unlimited.
     """
 
     @validator("preferred")
